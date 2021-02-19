@@ -7,20 +7,15 @@ type SarifTaskIdentifier = Pick<Task, 'taskName' | 'taskDisplayName' | 'category
 
 /**
  *
- * @param ruleId The SARIF Result.ruleId property.
- * @param message The SARIF Result.message.text property.
- * @param props Additional properties to populate a SARIF Result.
+ *
+ * @param result Builds a SARIF Result
  */
-function buildResult(
-  ruleId: string,
-  message: string,
-  props: Partial<Omit<Result, 'ruleId' | 'message'>>
-): Result {
-  return {
-    ruleId,
-    message: { text: message },
-    ...props,
-  };
+function buildResult(result: Result): Result {
+  if (!result.message) {
+    throw new Error('You must provide a SARIF.Result with a required message object.');
+  }
+
+  return result;
 }
 
 /**
@@ -143,7 +138,7 @@ export function fromTaskErrors(errors: TaskError[]): Notification[] {
   });
 }
 
-export const sarifBuilder = {
+export const builder = {
   buildResult,
   fromLintResults,
   fromLocations,

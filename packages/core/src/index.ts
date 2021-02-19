@@ -38,7 +38,7 @@ export { byRuleId, byRuleIds, bySeverity } from './data/filters';
 export { toPercent, groupDataByField } from './data/formatters';
 export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
-export { sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
+export { builder, NO_RESULTS_FOUND } from './data/sarif';
 
 export * from './types/cli';
 export * from './types/parsers';
